@@ -40,7 +40,7 @@
     </tx:advice>
     <!--切面-->
     <aop:config>
-        <aop:advisor advice-ref="txAdvice" pointcut="execution(* com.lmk.core.service.*.*(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut="execution(* com.lopponia.service.*.*(..))"/>
     </aop:config>
     <!--配置mybatis工厂-->
     <bean class="org.mybatis.spring.SqlSessionFactoryBean">
@@ -49,8 +49,8 @@
     </bean>
     <!--接口开发，扫描包-->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.lmk.core.dao"/>
+        <property name="basePackage" value="com.lopponia.dao"/>
     </bean>
     <!--配置扫描@Service注解-->
-    <context:component-scan base-package="com.lmk.core.service"/>
+    <context:component-scan base-package="com.lopponia.service"/>
 </beans>
