@@ -40,7 +40,7 @@
     </tx:advice>
     <!--切面-->
     <aop:config>
-        <aop:advisor advice-ref="txAdvice" pointcut="execution(* com.lmk.core.service.*.*(..))" />
+        <aop:advisor advice-ref="txAdvice" pointcut="execution(* com.lmk.core.service.*.*(..))"/>
     </aop:config>
     <!--配置mybatis工厂-->
     <bean class="org.mybatis.spring.SqlSessionFactoryBean">

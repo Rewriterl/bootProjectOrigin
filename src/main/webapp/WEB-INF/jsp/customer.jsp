@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
-<%@ page trimDirectiveWhitespaces="true"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+         pageEncoding="UTF-8" %>
+<%@ page trimDirectiveWhitespaces="true" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="itheima" uri="http://itheima.com/common/" %>
 <%
     String path = request.getContextPath();
@@ -15,16 +15,16 @@
     <title>客户管理-BootCRM</title>
     <!-- 引入css样式文件 -->
     <!-- Bootstrap Core CSS -->
-    <link href="<%=basePath%>css/bootstrap.min.css" rel="stylesheet" />
+    <link href="<%=basePath%>css/bootstrap.min.css" rel="stylesheet"/>
     <!-- MetisMenu CSS -->
-    <link href="<%=basePath%>css/metisMenu.min.css" rel="stylesheet" />
+    <link href="<%=basePath%>css/metisMenu.min.css" rel="stylesheet"/>
     <!-- DataTables CSS -->
-    <link href="<%=basePath%>css/dataTables.bootstrap.css" rel="stylesheet" />
+    <link href="<%=basePath%>css/dataTables.bootstrap.css" rel="stylesheet"/>
     <!-- Custom CSS -->
-    <link href="<%=basePath%>css/sb-admin-2.css" rel="stylesheet" />
+    <link href="<%=basePath%>css/sb-admin-2.css" rel="stylesheet"/>
     <!-- Custom Fonts -->
-    <link href="<%=basePath%>css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-    <link href="<%=basePath%>css/boot-crm.css" rel="stylesheet" type="text/css" />
+    <link href="<%=basePath%>css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="<%=basePath%>css/boot-crm.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="wrapper">
@@ -210,7 +210,7 @@
                     </li>
                     <li>
                         <a href="#">
-                            <i class="fa fa-dashboard fa-fw" ></i> 客户拜访
+                            <i class="fa fa-dashboard fa-fw"></i> 客户拜访
                         </a>
                     </li>
                 </ul>
@@ -234,11 +234,11 @@
                     <div class="form-group">
                         <label for="customerName">客户名称</label>
                         <input type="text" class="form-control" id="customerName"
-                               value="${custName }" name="custName" />
+                               value="${custName }" name="custName"/>
                     </div>
                     <div class="form-group">
                         <label for="customerFrom">客户来源</label>
-                        <select	class="form-control" id="customerFrom" name="custSource">
+                        <select class="form-control" id="customerFrom" name="custSource">
                             <option value="">--请选择--</option>
                             <c:forEach items="${fromType}" var="item">
                                 <option value="${item.dict_id}"
@@ -250,7 +250,7 @@
                     </div>
                     <div class="form-group">
                         <label for="custIndustry">所属行业</label>
-                        <select	class="form-control" id="custIndustry"  name="custIndustry">
+                        <select class="form-control" id="custIndustry" name="custIndustry">
                             <option value="">--请选择--</option>
                             <c:forEach items="${industryType}" var="item">
                                 <option value="${item.dict_id}"
@@ -262,7 +262,7 @@
                     </div>
                     <div class="form-group">
                         <label for="custLevel">客户级别</label>
-                        <select	class="form-control" id="custLevel" name="custLevel">
+                        <select class="form-control" id="custLevel" name="custLevel">
                             <option value="">--请选择--</option>
                             <c:forEach items="${levelType}" var="item">
                                 <option value="${item.dict_id}"
@@ -307,7 +307,8 @@
                                 <td>${row.cust_phone}</td>
                                 <td>${row.cust_mobile}</td>
                                 <td>
-                                    <a href="#" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#customerEditDialog" onclick= "editCustomer(${row.cust_id})">修改</a>
+                                    <a href="#" class="btn btn-primary btn-xs" data-toggle="modal"
+                                       data-target="#customerEditDialog" onclick="editCustomer(${row.cust_id})">修改</a>
                                     <a href="#" class="btn btn-danger btn-xs" onclick="deleteCustomer(${row.cust_id})">删除</a>
                                 </td>
                             </tr>
@@ -315,7 +316,7 @@
                         </tbody>
                     </table>
                     <div class="col-md-12 text-right">
-                        <itheima:page url="${pageContext.request.contextPath }/customer/list.action" />
+                        <itheima:page url="${pageContext.request.contextPath }/customer/list.action"/>
                     </div>
                     <!-- /.panel-body -->
                 </div>
@@ -344,16 +345,18 @@
                             客户名称
                         </label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="new_customerName" placeholder="客户名称" name="cust_name" />
+                            <input type="text" class="form-control" id="new_customerName" placeholder="客户名称"
+                                   name="cust_name"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="new_customerFrom" style="float:left;padding:7px 15px 0 27px;">客户来源</label>
                         <div class="col-sm-10">
-                            <select	class="form-control" id="new_customerFrom" name="cust_source">
+                            <select class="form-control" id="new_customerFrom" name="cust_source">
                                 <option value="">--请选择--</option>
                                 <c:forEach items="${fromType}" var="item">
-                                    <option value="${item.dict_id}"<c:if test="${item.dict_id == custSource}">selected</c:if>>
+                                    <option value="${item.dict_id}"
+                                            <c:if test="${item.dict_id == custSource}">selected</c:if>>
                                             ${item.dict_item_name }
                                     </option>
                                 </c:forEach>
@@ -363,10 +366,11 @@
                     <div class="form-group">
                         <label for="new_custIndustry" style="float:left;padding:7px 15px 0 27px;">所属行业</label>
                         <div class="col-sm-10">
-                            <select	class="form-control" id="new_custIndustry"  name="cust_industry">
+                            <select class="form-control" id="new_custIndustry" name="cust_industry">
                                 <option value="">--请选择--</option>
                                 <c:forEach items="${industryType}" var="item">
-                                    <option value="${item.dict_id}"<c:if test="${item.dict_id == custIndustry}"> selected</c:if>>
+                                    <option value="${item.dict_id}"<c:if
+                                            test="${item.dict_id == custIndustry}"> selected</c:if>>
                                             ${item.dict_item_name }
                                     </option>
                                 </c:forEach>
@@ -376,10 +380,11 @@
                     <div class="form-group">
                         <label for="new_custLevel" style="float:left;padding:7px 15px 0 27px;">客户级别</label>
                         <div class="col-sm-10">
-                            <select	class="form-control" id="new_custLevel" name="cust_level">
+                            <select class="form-control" id="new_custLevel" name="cust_level">
                                 <option value="">--请选择--</option>
                                 <c:forEach items="${levelType}" var="item">
-                                    <option value="${item.dict_id}"<c:if test="${item.dict_id == custLevel}"> selected</c:if>>${item.dict_item_name }</option>
+                                    <option value="${item.dict_id}"<c:if
+                                            test="${item.dict_id == custLevel}"> selected</c:if>>${item.dict_item_name }</option>
                                 </c:forEach>
                             </select>
                         </div>
@@ -387,31 +392,36 @@
                     <div class="form-group">
                         <label for="new_linkMan" class="col-sm-2 control-label">联系人</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="new_linkMan" placeholder="联系人" name="cust_linkman" />
+                            <input type="text" class="form-control" id="new_linkMan" placeholder="联系人"
+                                   name="cust_linkman"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="new_phone" class="col-sm-2 control-label">固定电话</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="new_phone" placeholder="固定电话" name="cust_phone" />
+                            <input type="text" class="form-control" id="new_phone" placeholder="固定电话"
+                                   name="cust_phone"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="new_mobile" class="col-sm-2 control-label">移动电话</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="new_mobile" placeholder="移动电话" name="cust_mobile" />
+                            <input type="text" class="form-control" id="new_mobile" placeholder="移动电话"
+                                   name="cust_mobile"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="new_zipcode" class="col-sm-2 control-label">邮政编码</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="new_zipcode" placeholder="邮政编码" name="cust_zipcode" />
+                            <input type="text" class="form-control" id="new_zipcode" placeholder="邮政编码"
+                                   name="cust_zipcode"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="new_address" class="col-sm-2 control-label">联系地址</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="new_address" placeholder="联系地址" name="cust_address" />
+                            <input type="text" class="form-control" id="new_address" placeholder="联系地址"
+                                   name="cust_address"/>
                         </div>
                     </div>
                 </form>
@@ -440,16 +450,18 @@
                     <div class="form-group">
                         <label for="edit_customerName" class="col-sm-2 control-label">客户名称</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="edit_customerName" placeholder="客户名称" name="cust_name" />
+                            <input type="text" class="form-control" id="edit_customerName" placeholder="客户名称"
+                                   name="cust_name"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="edit_customerFrom" style="float:left;padding:7px 15px 0 27px;">客户来源</label>
                         <div class="col-sm-10">
-                            <select	class="form-control" id="edit_customerFrom" name="cust_source">
+                            <select class="form-control" id="edit_customerFrom" name="cust_source">
                                 <option value="">--请选择--</option>
                                 <c:forEach items="${fromType}" var="item">
-                                    <option value="${item.dict_id}"<c:if test="${item.dict_id == custSource}"> selected</c:if>>${item.dict_item_name }</option>
+                                    <option value="${item.dict_id}"<c:if
+                                            test="${item.dict_id == custSource}"> selected</c:if>>${item.dict_item_name }</option>
                                 </c:forEach>
                             </select>
                         </div>
@@ -457,10 +469,11 @@
                     <div class="form-group">
                         <label for="edit_custIndustry" style="float:left;padding:7px 15px 0 27px;">所属行业</label>
                         <div class="col-sm-10">
-                            <select	class="form-control" id="edit_custIndustry"  name="cust_industry">
+                            <select class="form-control" id="edit_custIndustry" name="cust_industry">
                                 <option value="">--请选择--</option>
                                 <c:forEach items="${industryType}" var="item">
-                                    <option value="${item.dict_id}"<c:if test="${item.dict_id == custIndustry}"> selected</c:if>>${item.dict_item_name }</option>
+                                    <option value="${item.dict_id}"<c:if
+                                            test="${item.dict_id == custIndustry}"> selected</c:if>>${item.dict_item_name }</option>
                                 </c:forEach>
                             </select>
                         </div>
@@ -468,10 +481,11 @@
                     <div class="form-group">
                         <label for="edit_custLevel" style="float:left;padding:7px 15px 0 27px;">客户级别</label>
                         <div class="col-sm-10">
-                            <select	class="form-control" id="edit_custLevel" name="cust_level">
+                            <select class="form-control" id="edit_custLevel" name="cust_level">
                                 <option value="">--请选择--</option>
                                 <c:forEach items="${levelType}" var="item">
-                                    <option value="${item.dict_id}"<c:if test="${item.dict_id == custLevel}"> selected</c:if>>${item.dict_item_name }</option>
+                                    <option value="${item.dict_id}"<c:if
+                                            test="${item.dict_id == custLevel}"> selected</c:if>>${item.dict_item_name }</option>
                                 </c:forEach>
                             </select>
                         </div>
@@ -479,31 +493,36 @@
                     <div class="form-group">
                         <label for="edit_linkMan" class="col-sm-2 control-label">联系人</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="edit_linkMan" placeholder="联系人" name="cust_linkman" />
+                            <input type="text" class="form-control" id="edit_linkMan" placeholder="联系人"
+                                   name="cust_linkman"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="edit_phone" class="col-sm-2 control-label">固定电话</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="edit_phone" placeholder="固定电话" name="cust_phone" />
+                            <input type="text" class="form-control" id="edit_phone" placeholder="固定电话"
+                                   name="cust_phone"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="edit_mobile" class="col-sm-2 control-label">移动电话</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="edit_mobile" placeholder="移动电话" name="cust_mobile" />
+                            <input type="text" class="form-control" id="edit_mobile" placeholder="移动电话"
+                                   name="cust_mobile"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="edit_zipcode" class="col-sm-2 control-label">邮政编码</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="edit_zipcode" placeholder="邮政编码" name="cust_zipcode" />
+                            <input type="text" class="form-control" id="edit_zipcode" placeholder="邮政编码"
+                                   name="cust_zipcode"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="edit_address" class="col-sm-2 control-label">联系地址</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="edit_address" placeholder="联系地址" name="cust_address" />
+                            <input type="text" class="form-control" id="edit_address" placeholder="联系地址"
+                                   name="cust_address"/>
                         </div>
                     </div>
                 </form>
@@ -541,26 +560,28 @@
         $("#new_zipcode").val("");
         $("#new_address").val("");
     }
+
     // 创建客户
     function createCustomer() {
         $.post("<%=basePath%>customer/create.action",
-            $("#new_customer_form").serialize(),function(data){
-                if(data =="OK"){
+            $("#new_customer_form").serialize(), function (data) {
+                if (data == "OK") {
                     alert("客户创建成功！");
                     window.location.reload();
-                }else{
+                } else {
                     alert("客户创建失败！");
                     window.location.reload();
                 }
             });
     }
+
     // 通过id获取修改的客户信息
     function editCustomer(id) {
         $.ajax({
-            type:"get",
-            url:"<%=basePath%>customer/getCustomerById.action",
-            data:{"id":id},
-            success:function(data) {
+            type: "get",
+            url: "<%=basePath%>customer/getCustomerById.action",
+            data: {"id": id},
+            success: function (data) {
                 $("#edit_cust_id").val(data.cust_id);
                 $("#edit_customerName").val(data.cust_name);
                 $("#edit_customerFrom").val(data.cust_source)
@@ -575,27 +596,29 @@
             }
         });
     }
+
     // 执行修改客户操作
     function updateCustomer() {
-        $.post("<%=basePath%>customer/update.action",$("#edit_customer_form").serialize(),function(data){
-            if(data =="OK"){
+        $.post("<%=basePath%>customer/update.action", $("#edit_customer_form").serialize(), function (data) {
+            if (data == "OK") {
                 alert("客户信息更新成功！");
                 window.location.reload();
-            }else{
+            } else {
                 alert("客户信息更新失败！");
                 window.location.reload();
             }
         });
     }
+
     // 删除客户
     function deleteCustomer(id) {
-        if(confirm('确实要删除该客户吗?')) {
-            $.post("<%=basePath%>customer/delete.action",{"id":id},
-                function(data){
-                    if(data =="OK"){
+        if (confirm('确实要删除该客户吗?')) {
+            $.post("<%=basePath%>customer/delete.action", {"id": id},
+                function (data) {
+                    if (data == "OK") {
                         alert("客户删除成功！");
                         window.location.reload();
-                    }else{
+                    } else {
                         alert("删除客户失败！");
                         window.location.reload();
                     }
