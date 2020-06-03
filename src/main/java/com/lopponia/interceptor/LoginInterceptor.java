@@ -11,19 +11,20 @@ import javax.servlet.http.HttpSession;
 public class LoginInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
-        String url=httpServletRequest.getRequestURI();
-        if (url.indexOf("/login.action")>=0){
+        String url = httpServletRequest.getRequestURI();
+        if (url.contains("/login.action")) {
             return true;
         }
-        HttpSession session=httpServletRequest.getSession();
-        User user=(User)session.getAttribute("USER_SESSION");
-        if(user!=null){
+        HttpSession session = httpServletRequest.getSession();
+        User user = (User) session.getAttribute("USER_SESSION");
+        if (user != null) {
             return true;
         }
-        httpServletRequest.setAttribute("msg","你个还没登陆，先登录！");
-        httpServletRequest.getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(httpServletRequest,httpServletResponse);
+        httpServletRequest.setAttribute("msg", "没登录想桃子吃呢？");
+        httpServletRequest.getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(httpServletRequest, httpServletResponse);
         return false;
     }
+
     @Override
     public void postHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, ModelAndView modelAndView) throws Exception {
 
