@@ -6,49 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="de4729ac-0bc3-4598-b5e5-3e3f94861458" name="Default Changelist" comment="基于SSM的BOOT客户管理系统">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/boot_war.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/boot_war_exploded.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/boot.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Spring_5_2_3_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/aopalliance-1.0.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/commons-logging-1.2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/spring-aop-5.2.3.RELEASE.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/spring-aspects-5.2.3.RELEASE.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/spring-beans-5.2.3.RELEASE.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/spring-context-5.2.3.RELEASE.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/spring-context-support-5.2.3.RELEASE.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/spring-core-5.2.3.RELEASE.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/spring-expression-5.2.3.RELEASE.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/spring-instrument-5.2.3.RELEASE.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/spring-jdbc-5.2.3.RELEASE.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/spring-jms-5.2.3.RELEASE.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/spring-messaging-5.2.3.RELEASE.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/spring-orm-5.2.3.RELEASE.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/spring-oxm-5.2.3.RELEASE.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/spring-test-5.2.3.RELEASE.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/spring-tx-5.2.3.RELEASE.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/spring_aspects_5_1_6_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lmk/common/utils/NavigationTag.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lmk/common/utils/NavigationTag.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/applicationContext.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/applicationContext.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/properties/db.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/properties/db.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/customer.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/customer.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/boot/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/target/boot/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/boot/WEB-INF/classes/applicationContext.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/boot/WEB-INF/classes/applicationContext.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/boot/WEB-INF/classes/com/lmk/common/utils/NavigationTag.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/boot/WEB-INF/classes/com/lmk/common/utils/NavigationTag.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/boot/WEB-INF/classes/properties/db.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/boot/WEB-INF/classes/properties/db.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/boot/WEB-INF/jsp/customer.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/boot/WEB-INF/jsp/customer.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/boot.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/applicationContext.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/applicationContext.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/lmk/common/utils/NavigationTag.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lmk/common/utils/NavigationTag.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/properties/db.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/properties/db.properties" afterDir="false" />
-    </list>
+    <list default="true" id="de4729ac-0bc3-4598-b5e5-3e3f94861458" name="Default Changelist" comment="基于SSM的BOOT客户管理系统" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -72,6 +30,12 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PUSH_TAGS">
+      <GitPushTagMode>
+        <option name="argument" value="--tags" />
+        <option name="title" value="All" />
+      </GitPushTagMode>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="LogFilters">
@@ -226,8 +190,16 @@
       <workItem from="1583201282761" duration="125000" />
       <workItem from="1583218641180" duration="830000" />
       <workItem from="1591167026014" duration="1555000" />
-      <workItem from="1591168605359" duration="518000" />
+      <workItem from="1591168605359" duration="949000" />
     </task>
+    <task id="LOCAL-00001" summary="基于SSM的BOOT客户管理系统">
+      <created>1591169141280</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1591169141280</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -239,6 +211,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="基于SSM的BOOT客户管理系统" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="894" y="363" key="#Notifications" timestamp="1591169254573">
+      <screen x="0" y="23" width="1920" height="973" />
+    </state>
+    <state x="894" y="363" key="#Notifications/0.23.1920.973@0.23.1920.973" timestamp="1591169254573" />
     <state x="365" y="63" key="#Project_Structure" timestamp="1591167813834">
       <screen x="0" y="23" width="1920" height="973" />
     </state>
@@ -255,62 +231,78 @@
       <screen x="0" y="23" width="1920" height="973" />
     </state>
     <state x="731" y="398" key="#com.intellij.javaee.module.view.web.EditWebRootDialog/0.23.1920.973@0.23.1920.973" timestamp="1591167521691" />
-    <state x="893" y="397" key="Github.ShareDialog" timestamp="1591169121193">
+    <state x="605" y="68" key="CommitChangelistDialog2" timestamp="1591169211641">
       <screen x="0" y="23" width="1920" height="973" />
     </state>
-    <state x="893" y="397" key="Github.ShareDialog/0.23.1920.973@0.23.1920.973" timestamp="1591169121193" />
-    <state width="1041" height="241" key="GridCell.Tab.0.bottom" timestamp="1591168777329">
+    <state x="605" y="68" key="CommitChangelistDialog2/0.23.1920.973@0.23.1920.973" timestamp="1591169211641" />
+    <state x="338" y="139" width="1359" height="708" key="DiffContextDialog" timestamp="1591169557599">
       <screen x="0" y="23" width="1920" height="973" />
     </state>
-    <state width="1041" height="241" key="GridCell.Tab.0.bottom/0.23.1920.973@0.23.1920.973" timestamp="1591168777329" />
-    <state width="1041" height="241" key="GridCell.Tab.0.center" timestamp="1591168777328">
+    <state x="338" y="139" width="1359" height="708" key="DiffContextDialog/0.23.1920.973@0.23.1920.973" timestamp="1591169557599" />
+    <state x="893" y="397" width="382" height="192" key="Github.ShareDialog" timestamp="1591169373341">
       <screen x="0" y="23" width="1920" height="973" />
     </state>
-    <state width="1041" height="241" key="GridCell.Tab.0.center/0.23.1920.973@0.23.1920.973" timestamp="1591168777328" />
-    <state width="1041" height="241" key="GridCell.Tab.0.left" timestamp="1591168777328">
+    <state x="893" y="397" width="382" height="192" key="Github.ShareDialog/0.23.1920.973@0.23.1920.973" timestamp="1591169373341" />
+    <state width="1041" height="241" key="GridCell.Tab.0.bottom" timestamp="1591169206299">
       <screen x="0" y="23" width="1920" height="973" />
     </state>
-    <state width="1041" height="241" key="GridCell.Tab.0.left/0.23.1920.973@0.23.1920.973" timestamp="1591168777328" />
-    <state width="1041" height="241" key="GridCell.Tab.0.right" timestamp="1591168777329">
+    <state width="1041" height="241" key="GridCell.Tab.0.bottom/0.23.1920.973@0.23.1920.973" timestamp="1591169206299" />
+    <state width="1041" height="241" key="GridCell.Tab.0.center" timestamp="1591169206298">
       <screen x="0" y="23" width="1920" height="973" />
     </state>
-    <state width="1041" height="241" key="GridCell.Tab.0.right/0.23.1920.973@0.23.1920.973" timestamp="1591168777329" />
-    <state width="1041" height="241" key="GridCell.Tab.1.bottom" timestamp="1591168778587">
+    <state width="1041" height="241" key="GridCell.Tab.0.center/0.23.1920.973@0.23.1920.973" timestamp="1591169206298" />
+    <state width="1041" height="241" key="GridCell.Tab.0.left" timestamp="1591169206298">
       <screen x="0" y="23" width="1920" height="973" />
     </state>
-    <state width="1041" height="241" key="GridCell.Tab.1.bottom/0.23.1920.973@0.23.1920.973" timestamp="1591168778587" />
-    <state width="1041" height="241" key="GridCell.Tab.1.center" timestamp="1591168778584">
+    <state width="1041" height="241" key="GridCell.Tab.0.left/0.23.1920.973@0.23.1920.973" timestamp="1591169206298" />
+    <state width="1041" height="241" key="GridCell.Tab.0.right" timestamp="1591169206299">
       <screen x="0" y="23" width="1920" height="973" />
     </state>
-    <state width="1041" height="241" key="GridCell.Tab.1.center/0.23.1920.973@0.23.1920.973" timestamp="1591168778584" />
-    <state width="1041" height="241" key="GridCell.Tab.1.left" timestamp="1591168778583">
+    <state width="1041" height="241" key="GridCell.Tab.0.right/0.23.1920.973@0.23.1920.973" timestamp="1591169206299" />
+    <state width="1041" height="241" key="GridCell.Tab.1.bottom" timestamp="1591169206301">
       <screen x="0" y="23" width="1920" height="973" />
     </state>
-    <state width="1041" height="241" key="GridCell.Tab.1.left/0.23.1920.973@0.23.1920.973" timestamp="1591168778583" />
-    <state width="1041" height="241" key="GridCell.Tab.1.right" timestamp="1591168778586">
+    <state width="1041" height="241" key="GridCell.Tab.1.bottom/0.23.1920.973@0.23.1920.973" timestamp="1591169206301" />
+    <state width="1041" height="241" key="GridCell.Tab.1.center" timestamp="1591169206300">
       <screen x="0" y="23" width="1920" height="973" />
     </state>
-    <state width="1041" height="241" key="GridCell.Tab.1.right/0.23.1920.973@0.23.1920.973" timestamp="1591168778586" />
-    <state width="1041" height="241" key="GridCell.Tab.2.bottom" timestamp="1591168743924">
+    <state width="1041" height="241" key="GridCell.Tab.1.center/0.23.1920.973@0.23.1920.973" timestamp="1591169206300" />
+    <state width="1041" height="241" key="GridCell.Tab.1.left" timestamp="1591169206300">
       <screen x="0" y="23" width="1920" height="973" />
     </state>
-    <state width="1041" height="241" key="GridCell.Tab.2.bottom/0.23.1920.973@0.23.1920.973" timestamp="1591168743924" />
-    <state width="1041" height="241" key="GridCell.Tab.2.center" timestamp="1591168743923">
+    <state width="1041" height="241" key="GridCell.Tab.1.left/0.23.1920.973@0.23.1920.973" timestamp="1591169206300" />
+    <state width="1041" height="241" key="GridCell.Tab.1.right" timestamp="1591169206300">
       <screen x="0" y="23" width="1920" height="973" />
     </state>
-    <state width="1041" height="241" key="GridCell.Tab.2.center/0.23.1920.973@0.23.1920.973" timestamp="1591168743923" />
-    <state width="1041" height="241" key="GridCell.Tab.2.left" timestamp="1591168743923">
+    <state width="1041" height="241" key="GridCell.Tab.1.right/0.23.1920.973@0.23.1920.973" timestamp="1591169206300" />
+    <state width="1041" height="241" key="GridCell.Tab.2.bottom" timestamp="1591169206301">
       <screen x="0" y="23" width="1920" height="973" />
     </state>
-    <state width="1041" height="241" key="GridCell.Tab.2.left/0.23.1920.973@0.23.1920.973" timestamp="1591168743923" />
-    <state width="1041" height="241" key="GridCell.Tab.2.right" timestamp="1591168743924">
+    <state width="1041" height="241" key="GridCell.Tab.2.bottom/0.23.1920.973@0.23.1920.973" timestamp="1591169206301" />
+    <state width="1041" height="241" key="GridCell.Tab.2.center" timestamp="1591169206301">
       <screen x="0" y="23" width="1920" height="973" />
     </state>
-    <state width="1041" height="241" key="GridCell.Tab.2.right/0.23.1920.973@0.23.1920.973" timestamp="1591168743924" />
+    <state width="1041" height="241" key="GridCell.Tab.2.center/0.23.1920.973@0.23.1920.973" timestamp="1591169206301" />
+    <state width="1041" height="241" key="GridCell.Tab.2.left" timestamp="1591169206301">
+      <screen x="0" y="23" width="1920" height="973" />
+    </state>
+    <state width="1041" height="241" key="GridCell.Tab.2.left/0.23.1920.973@0.23.1920.973" timestamp="1591169206301" />
+    <state width="1041" height="241" key="GridCell.Tab.2.right" timestamp="1591169206301">
+      <screen x="0" y="23" width="1920" height="973" />
+    </state>
+    <state width="1041" height="241" key="GridCell.Tab.2.right/0.23.1920.973@0.23.1920.973" timestamp="1591169206301" />
+    <state x="617" y="233" key="Vcs.Push.Dialog.v2" timestamp="1591169237174">
+      <screen x="0" y="23" width="1920" height="973" />
+    </state>
+    <state x="617" y="233" key="Vcs.Push.Dialog.v2/0.23.1920.973@0.23.1920.973" timestamp="1591169237174" />
     <state x="608" y="361" key="git4idea.rebase.GitRebaseDialog" timestamp="1591169060298">
       <screen x="0" y="23" width="1920" height="973" />
     </state>
     <state x="608" y="361" key="git4idea.rebase.GitRebaseDialog/0.23.1920.973@0.23.1920.973" timestamp="1591169060298" />
+    <state x="835" y="389" key="git4idea.remote.GitConfigureRemotesDialog" timestamp="1591169341530">
+      <screen x="0" y="23" width="1920" height="973" />
+    </state>
+    <state x="835" y="389" key="git4idea.remote.GitConfigureRemotesDialog/0.23.1920.973@0.23.1920.973" timestamp="1591169341530" />
     <state x="589" y="228" width="670" height="675" key="run.anything.popup" timestamp="1591167049956">
       <screen x="0" y="23" width="1920" height="973" />
     </state>
