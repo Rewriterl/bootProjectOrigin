@@ -2,6 +2,7 @@ package com.lopponia.controller;
 
 import com.lopponia.bean.User;
 import com.lopponia.service.UserService;
+import com.lopponia.utils.Encrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +18,7 @@ public class UserController {
 
     @RequestMapping(value = "/login.action", method = RequestMethod.POST)
     public String login(String usercode, String password, Model model, HttpSession session) {
+        password = new Encrypt().encode(password);
         User user = userService.findUser(usercode, password);
         if (user != null) {
             session.setAttribute("USER_SESSION", user);

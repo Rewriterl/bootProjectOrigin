@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="bootProjectOrigin:war">
+    <output-path>$PROJECT_DIR$/out/artifacts/bootProjectOrigin_war</output-path>
+    <root id="archive" name="bootProjectOrigin_war.war">
+      <element id="artifact" artifact-name="bootProjectOrigin:war exploded" />
+    </root>
+  </artifact>
+</component>
