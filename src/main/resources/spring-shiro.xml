@@ -9,7 +9,7 @@
         <!-- 调用我们配置的权限管理器 -->
         <property name="securityManager" ref="securityManager"/>
         <!-- 配置我们的登录请求地址 -->
-        <property name="loginUrl" value="/api/login"/>
+        <property name="loginUrl" value="/login"/>
         <!-- 如果您请求的资源不再您的权限范围，则跳转请求地址-->
         <property name="unauthorizedUrl" value="/Error/**"/>
         <!--重要-->
@@ -25,7 +25,8 @@
         <property name="filterChainDefinitions">
             <value>
                 <!-- anon表示此地址不需要任何权限即可访问,authc需要验证 -->
-                /index.jsp=anon
+                /index=anon
+                /html/**=anon
                 /login=anon
                 /Error/**=anon
                 /notoken=anon

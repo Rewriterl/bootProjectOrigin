@@ -1,5 +1,6 @@
 package com.lopponia.controller;
 
+import com.lopponia.bean.Result;
 import com.lopponia.utils.Page;
 import com.lopponia.bean.BaseDict;
 import com.lopponia.bean.Customer;
@@ -87,12 +88,15 @@ public class CustomerController {
 
     //    @ResponseBody
     @PostMapping("/customer")
-    public String customerUpdate(Customer customer) {
+    public Result customerUpdate(Customer customer) {
         int rows = customerService.updateCustomer(customer);
+        Result result = new Result();
         if (rows > 0) {
-            return "OK";
+            result.setMessage("删除成功");
+            return result;
         } else {
-            return "FAIl";
+            result.setMessage("删除失败");
+            return result;
         }
     }
 

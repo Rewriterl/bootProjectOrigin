@@ -10,29 +10,19 @@
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
     <mvc:annotation-driven/>
-    <!--注解驱动-->
+    <!--    &lt;!&ndash;注解驱动&ndash;&gt;-->
     <mvc:annotation-driven/>
     <!--配置静态资源的访问映射 forRestful-->
     <mvc:resources mapping="/js/**" location="/js/"/>
     <mvc:resources mapping="/css/**" location="/css/"/>
     <mvc:resources mapping="/fonts/**" location="/fonts/"/>
     <mvc:resources mapping="/images/**" location="/images/"/>
+    <!--    <mvc:resources mapping="/html/**" location="/html/"/>-->
     <!--开启springMvc注解支持-->
     <mvc:annotation-driven/>
 
     <!--巨坑！开启shiro权限注解-->
     <aop:config proxy-target-class="true"/>
-
-    <!--配置视图解析器x-->
-    <!--    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">-->
-    <!--        <property name="prefix" value="/WEB-INF/jsp/"/>-->
-    <!--        <property name="suffix" value=".jsp"/>-->
-    <!--    </bean>-->
-    <!--拦截器-->
-    <!--    <mvc:interceptors>-->
-    <!--        <mvc:interceptor>-->
-    <!--            <mvc:mapping path="/**"/>-->
-    <!--            <bean class="com.lopponia.interceptor.LoginInterceptor"/>-->
-    <!--        </mvc:interceptor>-->
-    <!--    </mvc:interceptors>-->
+    <!--    启用servlet-->
+    <mvc:default-servlet-handler/>
 </beans>
