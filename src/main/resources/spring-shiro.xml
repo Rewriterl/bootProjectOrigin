@@ -25,7 +25,8 @@
         <property name="filterChainDefinitions">
             <value>
                 <!-- anon表示此地址不需要任何权限即可访问,authc需要验证 -->
-                /api/login=anon
+                /index.jsp=anon
+                /login=anon
                 /Error/**=anon
                 /notoken=anon
                 /unauthorized=anon

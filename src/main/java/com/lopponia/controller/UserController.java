@@ -1,17 +1,14 @@
 package com.lopponia.controller;
 
-import com.lopponia.bean.Customer;
+import com.lopponia.bean.Token;
 import com.lopponia.bean.User;
 import com.lopponia.service.UserService;
-import com.lopponia.utils.Encrypt;
+import com.lopponia.utils.TokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.logging.LogManager;
-import java.util.logging.Logger;
 
 @RestController
 public class UserController {
@@ -19,14 +16,16 @@ public class UserController {
     private UserService userService;
     protected Map<String, Object> resultMap = new LinkedHashMap<String, Object>();
 
-    @PostMapping(value = "/user/login")
-    public String login(String usercode, String password, Model model) {
-        password = new Encrypt().encode(password);
+    @PostMapping(value = "/login")
+    public String login(String usercode, String password) {
         User user = userService.findUser(usercode, password);
         if (user != null) {
 //            session.setAttribute("USER_SESSION", user);
 //            return "redirect:customer/list.action";
-            return user.toString();
+            TokenUtil tku = new TokenUtil();
+            String result = tku.creatToken(user.getUser_id().toString(), user.getUser_code());
+            System.out.println(tku.getTokenData(result).toString());
+            return result;
         }
 //        model.addAttribute("msg", "账号或密码错误");
         return "验证失败/无此用户";

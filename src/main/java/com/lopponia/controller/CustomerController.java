@@ -33,7 +33,6 @@ public class CustomerController {
     private String LEVEL_TYPE;
 
     //客户列表,分页处理
-//    @RequestMapping("/customer/list.action")
     @GetMapping("/customers")
     public String list(@RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer rows,
                        String custName, String custSource, String custIndustry, String custLevel, Model model) {
@@ -86,8 +85,7 @@ public class CustomerController {
         return customerService.getCustomerById(id);
     }
 
-    //    @RequestMapping("/customer/update.action")
-//    @ResponseBody
+    //    @ResponseBody
     @PostMapping("/customer")
     public String customerUpdate(Customer customer) {
         int rows = customerService.updateCustomer(customer);
