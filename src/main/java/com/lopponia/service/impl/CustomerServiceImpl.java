@@ -60,8 +60,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Customer getCustomerById(Integer id) {
-        Customer customer=customerDao.getCustomerById(id);
-        return customer;
+        return customerDao.getCustomerById(id);
     }
 
     @Override

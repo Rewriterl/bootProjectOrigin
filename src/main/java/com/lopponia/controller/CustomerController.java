@@ -8,18 +8,15 @@ import com.lopponia.service.BaseDictService;
 import com.lopponia.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
-@Controller
+@RestController
 public class CustomerController {
     @Autowired
     private CustomerService customerService;
@@ -35,8 +32,9 @@ public class CustomerController {
     @Value("${customer.level.type}")
     private String LEVEL_TYPE;
 
-    //客户列表
-    @RequestMapping("/customer/list.action")
+    //客户列表,分页处理
+//    @RequestMapping("/customer/list.action")
+    @GetMapping("/customers")
     public String list(@RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer rows,
                        String custName, String custSource, String custIndustry, String custLevel, Model model) {
         Page<Customer> customers = customerService.findCustomerList(page, rows, custName, custSource, custIndustry, custLevel);
@@ -48,21 +46,28 @@ public class CustomerController {
         //客户级别
         List<BaseDict> levelType = baseDictService.findBaseDictByTypeCode(LEVEL_TYPE);
         //添加参数
-        model.addAttribute("fromType", fromType);
-        model.addAttribute("industryType", industryType);
-        model.addAttribute("levelType", levelType);
-        model.addAttribute("custName", custName);
-        model.addAttribute("custSource", custSource);
-        model.addAttribute("custIndustry", custIndustry);
-        model.addAttribute("custLevel", custLevel);
+//        model.addAttribute("fromType", fromType);
+//        model.addAttribute("industryType", industryType);
+//        model.addAttribute("levelType", levelType);
+//        model.addAttribute("custName", custName);
+//        model.addAttribute("custSource", custSource);
+//        model.addAttribute("custIndustry", custIndustry);
+//        model.addAttribute("custLevel", custLevel);
+        System.out.println(fromType);
+        System.out.println(industryType);
+        System.out.println(levelType);
+        System.out.println(custName);
+        System.out.println(custSource);
+        System.out.println(custIndustry);
+        System.out.println(custLevel);
         return "customer";
     }
 
-    @RequestMapping("/customer/create.action")
-    @ResponseBody
+    @PutMapping("/customer")
     public String customerCreate(Customer customer, HttpSession session) {
         //获取Session中的当前用户
-        User user = (User) session.getAttribute("USER_SESSION");
+//        User user = (User) session.getAttribute("USER_SESSION");
+        User user = new User();
         //将当前用户id存储在客户对象中
         customer.setCust_create_id(user.getUser_id());
         Date date = new Date();
@@ -76,14 +81,14 @@ public class CustomerController {
         }
     }
 
-    @RequestMapping("/customer/getCustomerById.action")
-    @ResponseBody
-    public Customer getCustomerById(Integer id) {
+    @GetMapping("/customer/{id}")
+    public Customer getCustomerById(@PathVariable("id") Integer id) {
         return customerService.getCustomerById(id);
     }
 
-    @RequestMapping("/customer/update.action")
-    @ResponseBody
+    //    @RequestMapping("/customer/update.action")
+//    @ResponseBody
+    @PostMapping("/customer")
     public String customerUpdate(Customer customer) {
         int rows = customerService.updateCustomer(customer);
         if (rows > 0) {
@@ -93,9 +98,8 @@ public class CustomerController {
         }
     }
 
-    @RequestMapping("/customer/delete.action")
-    @ResponseBody
-    public String customerDelete(Integer id) {
+    @DeleteMapping("/customer/{id}")
+    public String customerDelete(@PathVariable("id") Integer id) {
         int rows = customerService.delete(id);
         if (rows > 0) {
             return "OK";

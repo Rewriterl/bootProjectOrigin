@@ -4,11 +4,11 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 
 public class Encrypt {
+    private final static String[] hexDigits = {"0", "1", "2", "3", "4", "5",
+            "6", "7", "8", "9", "a", "b", "c", "d", "e", "f"};
     private final Object salt =
             "be5e0323a9195ade5f56695ed9f2eb6b036f3e6417115d0cbe2fb9d" +
                     "74d8740406838dc84f152014b39a2414fb3530a40bc028a9e87642bd03cf5c36a1f70801e";
-    private final static String[] hexDigits = {"0", "1", "2", "3", "4", "5",
-            "6", "7", "8", "9", "a", "b", "c", "d", "e", "f"};
 
     public Encrypt() {
     }
@@ -23,13 +23,6 @@ public class Encrypt {
         } catch (Exception ignored) {
         }
         return result;
-    }
-
-    public boolean isPasswordValid(String encPass, String rawPass) {
-        String pass1 = "" + encPass;
-        String pass2 = encode(rawPass);
-
-        return pass1.equals(pass2);
     }
 
     private String mergePasswordAndSalt(String password) {
@@ -69,7 +62,7 @@ public class Encrypt {
 
     public static void main(String[] args) {
         Encrypt encoderMd5 = new Encrypt();//或者"SHA-256"
-        String encode = encoderMd5.encode("pm0006");
+        String encode = encoderMd5.encode("pm0001");
         System.out.println("加密后的密码：" + encode);
 //        boolean passwordValid = encoderMd5.isPasswordValid("c21feb87d79fd42e4336e4c231785ff9", "test");
 //        System.out.println(passwordValid);

@@ -3,10 +3,33 @@ package com.lopponia.bean;
 import java.io.Serializable;
 
 public class User implements Serializable {
-    private static final long serialVersionUID=1L;
+    private static final long serialVersionUID = 1L;
     private Integer user_id;
     private String user_code;
     private String user_name;
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "user_id=" + user_id +
+                ", user_code='" + user_code + '\'' +
+                ", user_name='" + user_name + '\'' +
+                ", user_role='" + user_role + '\'' +
+                ", user_password='" + user_password + '\'' +
+                ", user_state=" + user_state +
+                '}';
+    }
+
+    public String getUser_role() {
+        return user_role;
+    }
+
+    public void setUser_role(String user_role) {
+        this.user_role = user_role;
+    }
+
+    private String user_role;
+
     private String user_password;
     private Integer user_state;
 
