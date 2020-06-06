@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<html lang="zh">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -168,13 +168,17 @@
                     <form class="form-horizontal" id="dataForm">
                         <span class="heading">用户登录</span>
                         <div class="form-group">
-                            <input v-model="usercode" class="form-control" id="inputEmail3"
-                                   placeholder="usercode">
+                            <label for="inputEmail3">
+                                <input v-model="usercode" class="form-control" id="inputEmail3"
+                                       placeholder="usercode">
+                            </label>
                             <i class="fa fa-user"></i>
                         </div>
                         <div class="form-group help">
-                            <input v-model="password" type="password" class="form-control" id="inputPassword3"
-                                   placeholder="password">
+                            <label for="inputPassword3">
+                                <input v-model="password" type="password" class="form-control" id="inputPassword3"
+                                       placeholder="password">
+                            </label>
                             <i class="fa fa-lock"></i>
                             <a href="#" class="fa fa-question-circle"></a>
                         </div>
@@ -213,7 +217,7 @@
                     success: function (msg) {
                         console.log(msg)
                         sessionStorage.setItem("Authorization", msg.message)
-                        location.href = "http://localhost:8080/bootProjectOrigin_war/html/customer.html";
+                        location.href = "http://localhost:8080/bootProjectOrigin_war/customer.html";
                     }
                 })
             }

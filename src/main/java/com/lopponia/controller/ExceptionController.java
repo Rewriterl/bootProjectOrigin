@@ -31,6 +31,4 @@ public class ExceptionController {
         rs.setResult(ResultStatus.ROLEERR);
         return rs;
     }
-
 }
-

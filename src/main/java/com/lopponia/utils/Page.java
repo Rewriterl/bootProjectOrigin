@@ -6,6 +6,17 @@ public class Page<T> {
     private int total;
     private int page;
     private int size;
+
+    @Override
+    public String toString() {
+        return "Page{" +
+                "total=" + total +
+                ", page=" + page +
+                ", size=" + size +
+                ", rows=" + rows +
+                '}';
+    }
+
     private List<T> rows;
 
     public int getTotal() {

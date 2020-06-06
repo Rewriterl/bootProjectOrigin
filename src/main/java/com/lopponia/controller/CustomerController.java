@@ -35,17 +35,16 @@ public class CustomerController {
 
     //客户列表,分页处理
     @GetMapping("/customers")
-    public String list(@RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer rows,
-                       String custName, String custSource, String custIndustry, String custLevel, Model model) {
+    public Result list(@RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer rows,
+                       String custName, String custSource, String custIndustry, String custLevel) {
         Page<Customer> customers = customerService.findCustomerList(page, rows, custName, custSource, custIndustry, custLevel);
-        model.addAttribute("page", customers);
         //客户来源
         List<BaseDict> fromType = baseDictService.findBaseDictByTypeCode(FROM_TYPE);
         //客户所属行业
         List<BaseDict> industryType = baseDictService.findBaseDictByTypeCode(INDUSTRY_TYPE);
         //客户级别
         List<BaseDict> levelType = baseDictService.findBaseDictByTypeCode(LEVEL_TYPE);
-        //添加参数
+        Result result = new Result();
 //        model.addAttribute("fromType", fromType);
 //        model.addAttribute("industryType", industryType);
 //        model.addAttribute("levelType", levelType);
@@ -53,14 +52,8 @@ public class CustomerController {
 //        model.addAttribute("custSource", custSource);
 //        model.addAttribute("custIndustry", custIndustry);
 //        model.addAttribute("custLevel", custLevel);
-        System.out.println(fromType);
-        System.out.println(industryType);
-        System.out.println(levelType);
-        System.out.println(custName);
-        System.out.println(custSource);
-        System.out.println(custIndustry);
-        System.out.println(custLevel);
-        return "customer";
+        System.out.println(customers.toString());
+        return result;
     }
 
     @PutMapping("/customer")
