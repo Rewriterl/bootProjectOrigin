@@ -152,14 +152,14 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr class="text-center">
-                    <td>0</td>
-                    <td>人生</td>
-                    <td>人生就像</td>
-                    <td>人生就像</td>
-                    <td>人生就像</td>
-                    <td>人生就像</td>
-                    <td>人生就像</td>
+                <tr v-for="customer in customers">
+                    <td>{{customer.cust_id}}</td>
+                    <td>{{customer.cust_name}}</td>
+                    <td>{{customer.cust_source}}</td>
+                    <td>{{customer.cust_industry}}</td>
+                    <td>{{customer.cust_level}}</td>
+                    <td>{{customer.cust_phone}}</td>
+                    <td>{{customer.cust_mobile}}</td>
                     <td>
                         <button class="layui-btn layui-btn-radius layui-btn-normal layui-btn-sm" data-toggle="modal"
                                 data-target="#customerEditDialog">编辑
@@ -403,18 +403,93 @@
 <script>
     var app = new Vue({
         el: '#app',
-        data: {},
-        methods: {},
+        data: {
+            customers: '',
+            count: '100'
+        },
+        methods: {
+            get_customers: function (page) {
+                $.get({
+                    url: 'http://localhost:8080/bootProjectOrigin_war/customers',
+                    data: {
+                        "page": page,
+                        "rows": 10
+                    },
+                    contentType: 'text/plain',
+                    beforeSend: function (request) {
+                        request.setRequestHeader("Authorization", sessionStorage.getItem("Authorization"))
+                    },
+                    success: function (msg) {
+                        console.log(msg.data.rows)
+                        // 在created过程中给vue实例赋值要用对象名而不是this
+                        app.customers = msg.data.rows
+                        app.count = msg.data.total;
+                        console.log("get" + app.count)
+                        this.pagination(msg.data.page, msg.data.total)
+                    }
+                })
+            },
+            pagination: function (curr, count) {
+                layui.use('laypage', function () {
+                    var laypage = layui.laypage;
+                    //执行一个laypage实例
+                    laypage.render({
+                        elem: 'page',
+                        count: count,
+                        skin: 'blue',
+                        curr: curr,
+                        jump: function (obj, first) {
+                            console.log(obj)
+                            console.log(first)
+                            if (!first) {
+                                console.log("page" + this.count)
+                                app.get_customers(obj.curr)
+                            }
+                        }
+                    });
+                });
+            }
+        },
+        created() {
+            $.get({
+                url: 'http://localhost:8080/bootProjectOrigin_war/customers',
+                data: {
+                    "page": 1,
+                    "rows": 10
+                },
+                contentType: 'text/plain',
+                beforeSend: function (request) {
+                    request.setRequestHeader("Authorization", sessionStorage.getItem("Authorization"))
+                },
+                success: function (msg) {
+                    console.log(msg.data.rows)
+                    // 在created过程中给vue实例赋值要用对象名而不是this
+                    app.customers = msg.data.rows
+                    app.count = msg.data.total;
+                    console.log("get" + app.count)
+                    layui.use('laypage', function () {
+                        var laypage = layui.laypage;
+                        //执行一个laypage实例
+                        laypage.render({
+                            elem: 'page',
+                            count: msg.data.total,
+                            skin: 'blue',
+                            curr: 1,
+                            jump: function (obj, first) {
+                                console.log(obj)
+                                console.log(first)
+                                if (!first) {
+                                    console.log("page" + this.count)
+                                    app.get_customers(obj.curr)
+                                }
+                            }
+                        });
+                    });
+                }
+            })
+        },
     })
-    layui.use('laypage', function () {
-        var laypage = layui.laypage;
-        //执行一个laypage实例
-        laypage.render({
-            elem: 'page',
-            count: 50,
-            skin: 'blue'
-        });
-    });
+
 
     //清空新建客户窗口中的数据
     function clearCustomer() {

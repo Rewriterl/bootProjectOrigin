@@ -8,8 +8,6 @@
     <link href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="http://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/css/htmleaf-demo.css">
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <style type="text/css">
         .form-bg {
             padding: 2em 0;
@@ -196,6 +194,8 @@
         </div>
     </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script>
     var login = new Vue({
         el: "#dataForm",
@@ -209,7 +209,6 @@
                 $.post({
                     // method: 'POST',
                     url: 'http://localhost:8080/bootProjectOrigin_war/login',
-                    dataType: 'json',
                     data: {
                         "usercode": this.usercode,
                         "password": this.password
@@ -217,7 +216,7 @@
                     success: function (msg) {
                         console.log(msg)
                         sessionStorage.setItem("Authorization", msg.message)
-                        location.href = "http://localhost:8080/bootProjectOrigin_war/customer.html";
+                        location.href = "http://localhost:8080/bootProjectOrigin_war/html/customer.html";
                     }
                 })
             }

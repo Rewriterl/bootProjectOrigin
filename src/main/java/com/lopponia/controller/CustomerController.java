@@ -9,7 +9,6 @@ import com.lopponia.service.BaseDictService;
 import com.lopponia.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
@@ -33,26 +32,36 @@ public class CustomerController {
     @Value("${customer.level.type}")
     private String LEVEL_TYPE;
 
-    //客户列表,分页处理
+    /*
+    根据客户来源查询
+    根据客户所属行业查询
+    根据客户级别查询
+    */
     @GetMapping("/customers")
+    // @RequestParam仅支持formData格式
     public Result list(@RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer rows,
                        String custName, String custSource, String custIndustry, String custLevel) {
+        System.out.println(page);
+        System.out.println(rows);
         Page<Customer> customers = customerService.findCustomerList(page, rows, custName, custSource, custIndustry, custLevel);
-        //客户来源
-        List<BaseDict> fromType = baseDictService.findBaseDictByTypeCode(FROM_TYPE);
-        //客户所属行业
-        List<BaseDict> industryType = baseDictService.findBaseDictByTypeCode(INDUSTRY_TYPE);
-        //客户级别
-        List<BaseDict> levelType = baseDictService.findBaseDictByTypeCode(LEVEL_TYPE);
+//        //客户来源
+//        List<BaseDict> fromType = baseDictService.findBaseDictByTypeCode(FROM_TYPE);
+//        //客户所属行业
+//        List<BaseDict> industryType = baseDictService.findBaseDictByTypeCode(INDUSTRY_TYPE);
+//        //客户级别
+//        List<BaseDict> levelType = baseDictService.findBaseDictByTypeCode(LEVEL_TYPE);
         Result result = new Result();
-//        model.addAttribute("fromType", fromType);
-//        model.addAttribute("industryType", industryType);
-//        model.addAttribute("levelType", levelType);
-//        model.addAttribute("custName", custName);
-//        model.addAttribute("custSource", custSource);
-//        model.addAttribute("custIndustry", custIndustry);
-//        model.addAttribute("custLevel", custLevel);
         System.out.println(customers.toString());
+//        for (BaseDict baseDict : fromType) {
+//            System.out.println(baseDict.toString());
+//        }
+//        for (BaseDict baseDict : industryType) {
+//            System.out.println(baseDict.toString());
+//        }
+//        for (BaseDict baseDict : levelType) {
+//            System.out.println(baseDict.toString());
+//        }
+        result.setData(customers);
         return result;
     }
 

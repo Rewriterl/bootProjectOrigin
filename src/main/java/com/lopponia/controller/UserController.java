@@ -19,11 +19,12 @@ public class UserController {
     @PostMapping("/login")
     public Result login(String usercode, String password) {
         User user = userService.findUser(usercode, password);
+        System.out.println(user.toString());
         Result result = new Result();
         if (user != null) {
             TokenUtil tku = new TokenUtil();
             result.setMessage(tku.creatToken(user.getUser_id().toString(), user.getUser_code()));
-            System.out.println(result.toString());
+            System.out.println(result.getMessage());
             return result;
         }
         result.setMessage("账号或密码错误");

@@ -2,8 +2,10 @@ package com.lopponia.test;
 
 import com.lopponia.bean.Token;
 import com.lopponia.bean.User;
+import com.lopponia.service.UserService;
 import com.lopponia.utils.TokenUtil;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class TokenTest {
     @Test
