@@ -75,41 +75,24 @@
                         </div>
                         <div class="form-group">
                             <label for="customerFrom">客户来源</label>
-                            <select class="form-control" id="customerFrom" name="custSource">
+                            <select class="form-control" id="customerFrom" name="custSource" v-model="selectedFromType">
                                 <option value="">--请选择--</option>
-                                <!--                            <c:forEach items="${fromType}" var="item">-->
-                                <!--                                <option value="${item.dict_id}"-->
-                                <!--                                <c:if test="${item.dict_id == custSource}">selected</c:if>-->
-                                <!--                                >-->
-                                <!--                                ${item.dict_item_name }-->
-                                <!--                                </option>-->
-                                <!--                            </c:forEach>-->
+                                <option v-for="from in fromType">{{from.dict_item_name}}</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="custIndustry">所属行业</label>
-                            <select class="form-control" id="custIndustry" name="custIndustry">
+                            <select class="form-control" id="custIndustry" name="custIndustry"
+                                    v-model="selectedIndustryType">
                                 <option value="">--请选择--</option>
-                                <!--                            <c:forEach items="${industryType}" var="item">-->
-                                <!--                                <option value="${item.dict_id}"-->
-                                <!--                                <c:if test="${item.dict_id == custIndustry}"> selected</c:if>-->
-                                <!--                                >-->
-                                <!--                                ${item.dict_item_name }-->
-                                <!--                                </option>-->
-                                <!--                            </c:forEach>-->
+                                <option v-for="industry in industryType">{{industry.dict_item_name}}</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="custLevel">客户级别</label>
-                            <select class="form-control" id="custLevel" name="custLevel">
+                            <select class="form-control" id="custLevel" name="custLevel" v-model="selectedLevelType">
                                 <option value="">--请选择--</option>
-                                <!--                            <c:forEach items="${levelType}" var="item">-->
-                                <!--                                <option value="${item.dict_id}"-->
-                                <!--                                <c:if test="${item.dict_id == custLevel}"> selected</c:if>-->
-                                <!--                                >-->
-                                <!--                                ${item.dict_item_name }-->
-                                <!--                                </option>-->
-                                <!--                            </c:forEach>-->
+                                <option v-for="level in levelType">{{level.dict_item_name}}</option>
                             </select>
                         </div>
                         <button type="button"
@@ -401,11 +384,21 @@
 <!--Vue-->
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script>
+    layui.use('element', function () {
+        var element = layui.element;
+
+    });
     var app = new Vue({
         el: '#app',
         data: {
             customers: '',
-            count: '100'
+            count: '100',
+            fromType: '',
+            industryType: '',
+            levelType: '',
+            selectedFromType: '',
+            selectedIndustryType: '',
+            selectedLevelType: ''
         },
         methods: {
             get_customers: function (page) {
@@ -420,12 +413,15 @@
                         request.setRequestHeader("Authorization", sessionStorage.getItem("Authorization"))
                     },
                     success: function (msg) {
-                        console.log(msg.data.rows)
+                        console.log(msg.data[0].rows)
                         // 在created过程中给vue实例赋值要用对象名而不是this
-                        app.customers = msg.data.rows
-                        app.count = msg.data.total;
+                        app.customers = msg.data[0].rows
+                        app.count = msg.data[0].total;
+                        app.fromType = msg.data[1]
+                        app.industryType = msg.data[2]
+                        app.levelType = msg.data[3]
                         console.log("get" + app.count)
-                        this.pagination(msg.data.page, msg.data.total)
+                        app.pagination(msg.data[0].page, msg.data[0].total)
                     }
                 })
             },
@@ -451,45 +447,19 @@
             }
         },
         created() {
-            $.get({
-                url: 'http://localhost:8080/bootProjectOrigin_war/customers',
-                data: {
-                    "page": 1,
-                    "rows": 10
-                },
-                contentType: 'text/plain',
-                beforeSend: function (request) {
-                    request.setRequestHeader("Authorization", sessionStorage.getItem("Authorization"))
-                },
-                success: function (msg) {
-                    console.log(msg.data.rows)
-                    // 在created过程中给vue实例赋值要用对象名而不是this
-                    app.customers = msg.data.rows
-                    app.count = msg.data.total;
-                    console.log("get" + app.count)
-                    layui.use('laypage', function () {
-                        var laypage = layui.laypage;
-                        //执行一个laypage实例
-                        laypage.render({
-                            elem: 'page',
-                            count: msg.data.total,
-                            skin: 'blue',
-                            curr: 1,
-                            jump: function (obj, first) {
-                                console.log(obj)
-                                console.log(first)
-                                if (!first) {
-                                    console.log("page" + this.count)
-                                    app.get_customers(obj.curr)
-                                }
-                            }
-                        });
-                    });
-                }
-            })
+            this.get_customers(1)
         },
     })
-
+    var new_modal = new Vue({
+        el: "#newCustomerDialog",
+        data: {},
+        methods: {}
+    })
+    var edit_modal = new Vue({
+        el: "#customerEditDialog",
+        data: {},
+        methods: {}
+    })
 
     //清空新建客户窗口中的数据
     function clearCustomer() {

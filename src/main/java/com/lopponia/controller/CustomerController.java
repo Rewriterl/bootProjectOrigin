@@ -11,8 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpSession;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -41,32 +41,26 @@ public class CustomerController {
     // @RequestParam仅支持formData格式
     public Result list(@RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer rows,
                        String custName, String custSource, String custIndustry, String custLevel) {
-        System.out.println(page);
-        System.out.println(rows);
         Page<Customer> customers = customerService.findCustomerList(page, rows, custName, custSource, custIndustry, custLevel);
-//        //客户来源
-//        List<BaseDict> fromType = baseDictService.findBaseDictByTypeCode(FROM_TYPE);
-//        //客户所属行业
-//        List<BaseDict> industryType = baseDictService.findBaseDictByTypeCode(INDUSTRY_TYPE);
-//        //客户级别
-//        List<BaseDict> levelType = baseDictService.findBaseDictByTypeCode(LEVEL_TYPE);
+        //客户来源
+        List<BaseDict> fromType = baseDictService.findBaseDictByTypeCode(FROM_TYPE);
+        //客户所属行业
+        List<BaseDict> industryType = baseDictService.findBaseDictByTypeCode(INDUSTRY_TYPE);
+        //客户级别
+        List<BaseDict> levelType = baseDictService.findBaseDictByTypeCode(LEVEL_TYPE);
         Result result = new Result();
         System.out.println(customers.toString());
-//        for (BaseDict baseDict : fromType) {
-//            System.out.println(baseDict.toString());
-//        }
-//        for (BaseDict baseDict : industryType) {
-//            System.out.println(baseDict.toString());
-//        }
-//        for (BaseDict baseDict : levelType) {
-//            System.out.println(baseDict.toString());
-//        }
-        result.setData(customers);
+        List<Object> data = new ArrayList<>();
+        data.add(customers);
+        data.add(fromType);
+        data.add(industryType);
+        data.add(levelType);
+        result.setData(data);
         return result;
     }
 
     @PutMapping("/customer")
-    public String customerCreate(Customer customer, HttpSession session) {
+    public String customerCreate(Customer customer) {
         //获取Session中的当前用户
 //        User user = (User) session.getAttribute("USER_SESSION");
         User user = new User();

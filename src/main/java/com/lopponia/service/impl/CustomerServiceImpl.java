@@ -19,33 +19,33 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Page<Customer> findCustomerList(Integer page, Integer rows, String custName, String custSource, String custIndustry, String custLevel) {
-        Customer customer=new Customer();
+        Customer customer = new Customer();
         //判断客户名称
-        if(StringUtils.isNotBlank(custName)){
+        if (StringUtils.isNotBlank(custName)) {
             customer.setCust_name(custName);
         }
         //判断客户信息来源
-        if(StringUtils.isNotBlank(custSource)){
+        if (StringUtils.isNotBlank(custSource)) {
             customer.setCust_source(custSource);
         }
         //判断客户所属行业
-        if(StringUtils.isNotBlank(custIndustry)){
+        if (StringUtils.isNotBlank(custIndustry)) {
             customer.setCust_industry(custIndustry);
         }
         //判断客户级别
-        if(StringUtils.isNotBlank(custLevel)){
+        if (StringUtils.isNotBlank(custLevel)) {
             customer.setCust_level(custLevel);
         }
         //当前页
-        customer.setStart((page-1)*rows);
+        customer.setStart((page - 1) * rows);
         //每页数
         customer.setRows(rows);
         //查询客户列表
-        List<Customer> customers=customerDao.selectCustomerList(customer);
+        List<Customer> customers = customerDao.selectCustomerList(customer);
         //查询客户列表总计数
-        Integer count=customerDao.selectCustomerListCount(customer);
+        Integer count = customerDao.selectCustomerListCount(customer);
         //创建page返回对象
-        Page<Customer> result=new Page<>();
+        Page<Customer> result = new Page<>();
         result.setPage(page);
         result.setRows(customers);
         result.setSize(rows);
