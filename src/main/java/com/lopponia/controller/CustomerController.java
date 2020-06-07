@@ -4,11 +4,12 @@ import com.lopponia.bean.Result;
 import com.lopponia.utils.Page;
 import com.lopponia.bean.BaseDict;
 import com.lopponia.bean.Customer;
-import com.lopponia.bean.User;
 import com.lopponia.service.BaseDictService;
 import com.lopponia.service.CustomerService;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Timestamp;
@@ -63,6 +64,7 @@ public class CustomerController {
         return result;
     }
 
+    @RequiresRoles("admin")
     @PutMapping("/customer")
     public Result customerCreate(@RequestParam String custName,
                                  @RequestParam String custSource,
@@ -107,6 +109,7 @@ public class CustomerController {
         return customerService.getCustomerById(id);
     }
 
+    @RequiresRoles("admin")
     @PostMapping("/customer")
     public Result customerUpdate(@RequestParam Integer custId,
                                  @RequestParam String custName,
@@ -119,16 +122,6 @@ public class CustomerController {
                                  @RequestParam String zipcode,
                                  @RequestParam String address) {
         Customer customer = new Customer();
-        System.out.println(custId);
-        System.out.println(custName);
-        System.out.println(custSource);
-        System.out.println(custIndustry);
-        System.out.println(custLevel);
-        System.out.println(linkman);
-        System.out.println(phone);
-        System.out.println(mobile);
-        System.out.println(zipcode);
-        System.out.println(address);
         customer.setCust_id(custId);
         customer.setCust_create_id(6);
         customer.setCust_name(custName);
@@ -151,6 +144,7 @@ public class CustomerController {
         }
     }
 
+    @RequiresRoles("admin")
     @DeleteMapping("/customer/{id}")
     public Result customerDelete(@PathVariable("id") Integer id) {
         int rows = customerService.delete(id);

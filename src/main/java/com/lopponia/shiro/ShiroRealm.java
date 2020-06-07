@@ -35,7 +35,7 @@ public class ShiroRealm extends AuthorizingRealm {
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
         TokenUtil tku = new TokenUtil();
         String token = (String) principals.getPrimaryPrincipal();
-        //logger.info("realm授权获取token:"+token);
+        logger.info("realm授权获取token:" + token);
         logger.info("realm获取的token解密后：" + tku.getTokenData(token));
         logger.info("角色:" + tku.getTokenData(token).getRole());
         //授权

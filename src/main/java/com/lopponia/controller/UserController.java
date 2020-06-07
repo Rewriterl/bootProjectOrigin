@@ -5,15 +5,20 @@ import com.lopponia.bean.User;
 import com.lopponia.service.UserService;
 import com.lopponia.utils.TokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.Serializable;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 @RestController
 public class UserController {
     @Autowired
     private UserService userService;
+    @Autowired
+    RedisTemplate<Serializable, Serializable> redisTemplate;
     protected Map<String, Object> resultMap = new LinkedHashMap<String, Object>();
 
     @PostMapping("/login")
@@ -23,23 +28,14 @@ public class UserController {
         Result result = new Result();
         if (user != null) {
             TokenUtil tku = new TokenUtil();
-            result.setMessage(tku.creatToken(user.getUser_id().toString(), user.getUser_code()));
-            System.out.println(result.getMessage());
+            var token = tku.creatToken(user.getUser_id().toString(), user.getUser_code());
+            result.setMessage(token);
+            redisTemplate.opsForValue().set(token, user, 30, TimeUnit.MINUTES);
+            System.out.println("取自redis" + redisTemplate.opsForValue().get(token));
             return result;
         }
         result.setMessage("账号或密码错误");
         return result;
-    }
-
-    // 测试接口
-    @GetMapping("/user/{id}")
-    public User getCustomerById(@PathVariable("id") Integer id) {
-        return userService.findUser("admin", "admin");
-    }
-
-    @GetMapping("/user/Customer")
-    public String toCustomer() {
-        return "期待返回customer页面";
     }
 
     @GetMapping("/user/logout")

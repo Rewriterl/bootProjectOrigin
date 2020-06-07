@@ -506,8 +506,8 @@
                         request.setRequestHeader("Authorization", sessionStorage.getItem("Authorization"))
                     },
                     success: function (msg) {
-
-                        this.get_customers();
+                        layer.msg(msg.message)
+                        app.get_customers();
                     }
                 })
             }
