@@ -64,20 +64,50 @@ public class CustomerController {
     }
 
     @PutMapping("/customer")
-    public String customerCreate(Customer customer) {
+    public Result customerCreate(@RequestParam String custName,
+                                 @RequestParam String custSource,
+                                 @RequestParam String custIndustry,
+                                 @RequestParam String custLevel,
+                                 @RequestParam String linkman,
+                                 @RequestParam String phone,
+                                 @RequestParam String mobile,
+                                 @RequestParam String zipcode,
+                                 @RequestParam String address) {
         //获取Session中的当前用户
 //        User user = (User) session.getAttribute("USER_SESSION");
+        Customer customer = new Customer();
         User user = new User();
         //将当前用户id存储在客户对象中
-        customer.setCust_create_id(user.getUser_id());
+        System.out.println(custName);
+        System.out.println(custSource);
+        System.out.println(custIndustry);
+        System.out.println(custLevel);
+        System.out.println(linkman);
+        System.out.println(phone);
+        System.out.println(mobile);
+        System.out.println(zipcode);
+        System.out.println(address);
+        customer.setCust_create_id(6);
+        customer.setCust_name(custName);
+        customer.setCust_source(custSource);
+        customer.setCust_industry(custIndustry);
+        customer.setCust_level(custLevel);
+        customer.setCust_linkman(linkman);
+        customer.setCust_phone(phone);
+        customer.setCust_mobile(mobile);
+        customer.setCust_zipcode(zipcode);
+        customer.setCust_address(address);
         Date date = new Date();
         Timestamp timestamp = new Timestamp(date.getTime());
         customer.setCust_createtime(timestamp);
         int rows = customerService.createCustomer(customer);
+        Result result = new Result();
         if (rows > 0) {
-            return "OK";
+            result.setMessage("添加成功");
+            return result;
         } else {
-            return "FAIL";
+            result.setMessage("添加失败");
+            return result;
         }
     }
 
