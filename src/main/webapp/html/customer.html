@@ -133,7 +133,7 @@
                     layui-btn-normal
                     layui-btn-lg
                     layui-btn-fluid"
-                    onclick="app.edit(app.fromType,app.industryType,app.levelType)">创建新的用户</a>
+                    onclick="app.create(app.fromType,app.industryType,app.levelType)">创建新的用户</a>
             <table class="layui-table">
                 <colgroup>
                     <col width="150">
@@ -171,8 +171,7 @@
                         layui-btn-radius
                         layui-btn-normal
                         layui-btn-sm"
-                                data-toggle="modal"
-                                data-target="#customerEditDialog">编辑
+                                @click="edit(customer)">编辑
                         </button>
                         <button class="layui-btn
                         layui-btn-radius
@@ -309,42 +308,42 @@
                             <label for="edit_customerName" class="col-sm-2 control-label">客户名称</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="edit_customerName" placeholder="客户名称"
-                                       name="cust_name"/>
+                                       name="cust_name" v-model="copy.cust_name"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="edit_customerFrom" style="float:left;padding:7px 15px 0 27px;">客户来源</label>
                             <div class="col-sm-10">
-                                <select class="form-control" id="edit_customerFrom" name="cust_source">
+                                <select class="form-control" id="edit_customerFrom" name="custSource"
+                                        v-model="copy.cust_source">
                                     <option value="">--请选择--</option>
-                                    <!--                                    <c:forEach items="${fromType}" var="item">-->
-                                    <!--                                        <option value="${item.dict_id}"<c:if-->
-                                    <!--                                            test="${item.dict_id == custSource}"> selected</c:if>>${item.dict_item_name }</option>-->
-                                    <!--                                    </c:forEach>-->
+                                    <option :value="from.dict_item_name" v-for="from in fromType">
+                                        {{from.dict_item_name}}
+                                    </option>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="edit_custIndustry" style="float:left;padding:7px 15px 0 27px;">所属行业</label>
                             <div class="col-sm-10">
-                                <select class="form-control" id="edit_custIndustry" name="cust_industry">
+                                <select class="form-control" id="edit_custIndustry" name="custIndustry"
+                                        v-model="copy.cust_industry">
                                     <option value="">--请选择--</option>
-                                    <!--                                    <c:forEach items="${industryType}" var="item">-->
-                                    <!--                                        <option value="${item.dict_id}"<c:if-->
-                                    <!--                                            test="${item.dict_id == custIndustry}"> selected</c:if>>${item.dict_item_name }</option>-->
-                                    <!--                                    </c:forEach>-->
+                                    <option :value="industry.dict_item_name" v-for="industry in industryType">
+                                        {{industry.dict_item_name}}
+                                    </option>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="edit_custLevel" style="float:left;padding:7px 15px 0 27px;">客户级别</label>
                             <div class="col-sm-10">
-                                <select class="form-control" id="edit_custLevel" name="cust_level">
+                                <select class="form-control" id="edit_custLevel" name="custLevel"
+                                        v-model="copy.cust_level">
                                     <option value="">--请选择--</option>
-                                    <!--                                    <c:forEach items="${levelType}" var="item">-->
-                                    <!--                                        <option value="${item.dict_id}"<c:if-->
-                                    <!--                                            test="${item.dict_id == custLevel}"> selected</c:if>>${item.dict_item_name }</option>-->
-                                    <!--                                    </c:forEach>-->
+                                    <option :value="level.dict_item_name" v-for="level in levelType">
+                                        {{level.dict_item_name}}
+                                    </option>
                                 </select>
                             </div>
                         </div>
@@ -352,42 +351,42 @@
                             <label for="edit_linkMan" class="col-sm-2 control-label">联系人</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="edit_linkMan" placeholder="联系人"
-                                       name="cust_linkman"/>
+                                       name="cust_linkman" v-model="copy.cust_linkman"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="edit_phone" class="col-sm-2 control-label">固定电话</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="edit_phone" placeholder="固定电话"
-                                       name="cust_phone"/>
+                                       name="cust_phone" v-model="copy.cust_phone"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="edit_mobile" class="col-sm-2 control-label">移动电话</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="edit_mobile" placeholder="移动电话"
-                                       name="cust_mobile"/>
+                                       name="cust_mobile" v-model="copy.cust_mobile"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="edit_zipcode" class="col-sm-2 control-label">邮政编码</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="edit_zipcode" placeholder="邮政编码"
-                                       name="cust_zipcode"/>
+                                       name="cust_zipcode" v-model="copy.cust_zipcode"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="edit_address" class="col-sm-2 control-label">联系地址</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="edit_address" placeholder="联系地址"
-                                       name="cust_address"/>
+                                       name="cust_address" v-model="copy.cust_address"/>
                             </div>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary" onclick="updateCustomer()">保存修改</button>
+                    <button type="button" class="btn btn-primary" onclick="edit_modal.update()">保存修改</button>
                 </div>
             </div>
         </div>
@@ -475,12 +474,23 @@
                     });
                 });
             },
-            edit: function (fromType, industryType, levelType) {
+            create: function (fromType, industryType, levelType) {
                 new_modal.clearCustomer();
                 new_modal.fromType = fromType;
                 new_modal.industryType = industryType;
                 new_modal.levelType = levelType;
                 $("#newCustomerDialog").modal()({
+                    backdrop: 'static',
+                    keyboard: true
+                })
+            },
+            edit: function (customer) {
+                edit_modal.fromType = app.fromType;
+                edit_modal.industryType = app.industryType;
+                edit_modal.levelType = app.levelType;
+                edit_modal.customer = customer;
+                edit_modal.copy = Object.assign({}, customer)
+                $("#customerEditDialog").modal()({
                     backdrop: 'static',
                     keyboard: true
                 })
@@ -544,22 +554,57 @@
     })
     var edit_modal = new Vue({
         el: "#customerEditDialog",
-        data: {},
-        methods: {}
+        data: {
+            customer: '',
+            copy: '',
+            fromType: '',
+            industryType: '',
+            levelType: ''
+        },
+        methods: {
+            update: function () {
+                fromType = '';
+                cust_industry = '';
+                levelType = '';
+                for (i = 0; i < edit_modal.fromType.length; i++) {
+                    if (edit_modal.copy.cust_source === edit_modal.fromType[i].dict_item_name) {
+                        fromType = edit_modal.fromType[i].dict_id;
+                    }
+                }
+                for (i = 0; i < edit_modal.industryType.length; i++) {
+                    if (edit_modal.copy.cust_industry === edit_modal.industryType[i].dict_item_name) {
+                        cust_industry = edit_modal.industryType[i].dict_id;
+                    }
+                }
+                for (i = 0; i < edit_modal.levelType.length; i++) {
+                    if (edit_modal.copy.cust_level === edit_modal.levelType[i].dict_item_name) {
+                        levelType = edit_modal.levelType[i].dict_id;
+                    }
+                }
+                $.post({
+                    url: 'http://localhost:8080/bootProjectOrigin_war/customer?' +
+                        'custId=' + this.copy.cust_id + '&' +
+                        'custName=' + this.copy.cust_name + '&' +
+                        'custSource=' + fromType + '&' +
+                        'custIndustry=' + cust_industry + '&' +
+                        'custLevel=' + levelType + '&' +
+                        'linkman=' + this.copy.cust_linkman + '&' +
+                        'phone=' + this.copy.cust_phone + '&' +
+                        'mobile=' + this.copy.cust_mobile + '&' +
+                        'zipcode=' + this.copy.cust_zipcode + '&' +
+                        'address=' + this.copy.cust_address,
+                    contentType: 'text/plain',
+                    beforeSend: function (request) {
+                        request.setRequestHeader("Authorization", sessionStorage.getItem("Authorization"))
+                    },
+                    success: function (msg) {
+                        alert(msg.message)
+                        app.get_customers()
+                    }
+                })
+            }
+        }
     })
-
-    //清空新建客户窗口中的数据
-    // function clearCustomer() {
-    //     $("#new_customerName").val("");
-    //     $("#new_customerFrom").val("")
-    //     $("#new_custIndustry").val("")
-    //     $("#new_custLevel").val("")
-    //     $("#new_linkMan").val("");
-    //     $("#new_phone").val("");
-    //     $("#new_mobile").val("");
-    //     $("#new_zipcode").val("");
-    //     $("#new_address").val("");
-    // }
 </script>
 </body>
 </html>

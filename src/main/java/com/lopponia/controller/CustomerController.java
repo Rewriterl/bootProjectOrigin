@@ -76,17 +76,8 @@ public class CustomerController {
         //获取Session中的当前用户
 //        User user = (User) session.getAttribute("USER_SESSION");
         Customer customer = new Customer();
-        User user = new User();
+//        User user = new User();
         //将当前用户id存储在客户对象中
-        System.out.println(custName);
-        System.out.println(custSource);
-        System.out.println(custIndustry);
-        System.out.println(custLevel);
-        System.out.println(linkman);
-        System.out.println(phone);
-        System.out.println(mobile);
-        System.out.println(zipcode);
-        System.out.println(address);
         customer.setCust_create_id(6);
         customer.setCust_name(custName);
         customer.setCust_source(custSource);
@@ -116,16 +107,46 @@ public class CustomerController {
         return customerService.getCustomerById(id);
     }
 
-    //    @ResponseBody
     @PostMapping("/customer")
-    public Result customerUpdate(Customer customer) {
+    public Result customerUpdate(@RequestParam Integer custId,
+                                 @RequestParam String custName,
+                                 @RequestParam String custSource,
+                                 @RequestParam String custIndustry,
+                                 @RequestParam String custLevel,
+                                 @RequestParam String linkman,
+                                 @RequestParam String phone,
+                                 @RequestParam String mobile,
+                                 @RequestParam String zipcode,
+                                 @RequestParam String address) {
+        Customer customer = new Customer();
+        System.out.println(custId);
+        System.out.println(custName);
+        System.out.println(custSource);
+        System.out.println(custIndustry);
+        System.out.println(custLevel);
+        System.out.println(linkman);
+        System.out.println(phone);
+        System.out.println(mobile);
+        System.out.println(zipcode);
+        System.out.println(address);
+        customer.setCust_id(custId);
+        customer.setCust_create_id(6);
+        customer.setCust_name(custName);
+        customer.setCust_source(custSource);
+        customer.setCust_industry(custIndustry);
+        customer.setCust_level(custLevel);
+        customer.setCust_linkman(linkman);
+        customer.setCust_phone(phone);
+        customer.setCust_mobile(mobile);
+        customer.setCust_zipcode(zipcode);
+        customer.setCust_address(address);
         int rows = customerService.updateCustomer(customer);
         Result result = new Result();
         if (rows > 0) {
-            result.setMessage("删除成功");
+            result.setMessage("修改成功");
             return result;
         } else {
-            result.setMessage("删除失败");
+            result.setMessage("修改失败");
             return result;
         }
     }
