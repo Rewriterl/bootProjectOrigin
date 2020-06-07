@@ -176,7 +176,8 @@
                         <button class="layui-btn
                         layui-btn-radius
                         layui-btn-danger
-                        layui-btn-sm">删除
+                        layui-btn-sm"
+                                @click="deleteIt(customer.cust_id)">删除
                         </button>
                     </td>
                 </tr>
@@ -400,6 +401,7 @@
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
 <!-- Bootstrap Core JavaScript -->
 <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://www.layuicdn.com/layer/layer.js"></script>
 <script src="https://www.layuicdn.com/layui/layui.js"></script>
 <!--Vue-->
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -494,6 +496,20 @@
                     backdrop: 'static',
                     keyboard: true
                 })
+            },
+            deleteIt: function (id) {
+                $.ajax({
+                    type: 'DELETE',
+                    url: 'http://localhost:8080/bootProjectOrigin_war/customer/' + id,
+                    contentType: 'text/plain',
+                    beforeSend: function (request) {
+                        request.setRequestHeader("Authorization", sessionStorage.getItem("Authorization"))
+                    },
+                    success: function (msg) {
+
+                        this.get_customers();
+                    }
+                })
             }
         },
         created() {
@@ -535,7 +551,7 @@
                         request.setRequestHeader("Authorization", sessionStorage.getItem("Authorization"))
                     },
                     success: function (msg) {
-                        alert(msg.message)
+                        layer.msg(msg.message)
                     }
                 })
             },
@@ -598,7 +614,7 @@
                         request.setRequestHeader("Authorization", sessionStorage.getItem("Authorization"))
                     },
                     success: function (msg) {
-                        alert(msg.message)
+                        layer.msg(msg.message)
                         app.get_customers()
                     }
                 })

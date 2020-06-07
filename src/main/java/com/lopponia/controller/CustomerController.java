@@ -152,12 +152,15 @@ public class CustomerController {
     }
 
     @DeleteMapping("/customer/{id}")
-    public String customerDelete(@PathVariable("id") Integer id) {
+    public Result customerDelete(@PathVariable("id") Integer id) {
         int rows = customerService.delete(id);
+        Result result = new Result();
         if (rows > 0) {
-            return "OK";
+            result.setMessage("删除成功");
+            return result;
         } else {
-            return "FAIL";
+            result.setMessage("删除失败");
+            return result;
         }
     }
 }
