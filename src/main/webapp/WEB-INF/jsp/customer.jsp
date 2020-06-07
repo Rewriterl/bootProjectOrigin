@@ -484,8 +484,11 @@
                             <select class="form-control" id="edit_custLevel" name="cust_level">
                                 <option value="">--请选择--</option>
                                 <c:forEach items="${levelType}" var="item">
-                                    <option value="${item.dict_id}"<c:if
-                                            test="${item.dict_id == custLevel}"> selected</c:if>>${item.dict_item_name }</option>
+                                    <option value="${item.dict_id}"
+                                            <c:if test="${item.dict_id == custLevel}">
+                                                selected</c:if>>
+                                            ${item.dict_item_name }
+                                    </option>
                                 </c:forEach>
                             </select>
                         </div>

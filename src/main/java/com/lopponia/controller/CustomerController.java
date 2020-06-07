@@ -39,8 +39,12 @@ public class CustomerController {
     */
     @GetMapping("/customers")
     // @RequestParam仅支持formData格式
-    public Result list(@RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer rows,
-                       String custName, String custSource, String custIndustry, String custLevel) {
+    public Result list(@RequestParam(defaultValue = "1") Integer page,
+                       @RequestParam(defaultValue = "10") Integer rows,
+                       @RequestParam(defaultValue = "") String custName,
+                       @RequestParam(defaultValue = "") String custSource,
+                       @RequestParam(defaultValue = "") String custIndustry,
+                       @RequestParam(defaultValue = "") String custLevel) {
         Page<Customer> customers = customerService.findCustomerList(page, rows, custName, custSource, custIndustry, custLevel);
         //客户来源
         List<BaseDict> fromType = baseDictService.findBaseDictByTypeCode(FROM_TYPE);

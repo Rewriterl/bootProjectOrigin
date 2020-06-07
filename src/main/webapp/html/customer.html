@@ -71,32 +71,56 @@
                         <div class="form-group">
                             <label for="customerName">客户名称</label>
                             <input type="text" class="form-control" id="customerName"
-                                   value="" name="custName"/>
+                                   v-model="this.custName"/>
                         </div>
                         <div class="form-group">
                             <label for="customerFrom">客户来源</label>
-                            <select class="form-control" id="customerFrom" name="custSource" v-model="selectedFromType">
+                            <select class="form-control" id="customerFrom" name="custSource"
+                                    v-model="this.selectedFromType">
                                 <option value="">--请选择--</option>
-                                <option v-for="from in fromType">{{from.dict_item_name}}</option>
+                                <option :value="from.dict_id" v-for="from in fromType">{{from.dict_item_name}}</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="custIndustry">所属行业</label>
                             <select class="form-control" id="custIndustry" name="custIndustry"
-                                    v-model="selectedIndustryType">
+                                    v-model="this.selectedIndustryType">
                                 <option value="">--请选择--</option>
-                                <option v-for="industry in industryType">{{industry.dict_item_name}}</option>
+                                <option :value="industry.dict_id" v-for="industry in industryType">
+                                    {{industry.dict_item_name}}
+                                </option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="custLevel">客户级别</label>
-                            <select class="form-control" id="custLevel" name="custLevel" v-model="selectedLevelType">
+                            <select class="form-control" id="custLevel" name="custLevel"
+                                    v-model="this.selectedLevelType">
                                 <option value="">--请选择--</option>
-                                <option v-for="level in levelType">{{level.dict_item_name}}</option>
+                                <option :value="level.dict_id" v-for="level in levelType">{{level.dict_item_name}}
+                                </option>
                             </select>
                         </div>
                         <button type="button"
-                                class="layui-btn layui-btn-radius layui-btn-normal layui-btn-lg layui-col-md-offset5">
+                                class="layui-btn
+                                layui-btn-radius
+                                layui-btn-normal
+                                layui-btn-lg
+                                layui-col-md-offset4"
+                                @click="clearSearch()">
+                            清空
+                        </button>
+                        <button type="button"
+                                class="layui-btn
+                                layui-btn-radius
+                                layui-btn-normal
+                                layui-btn-lg
+                                layui-col-md-offset5"
+                                @click="get_customers(
+                                1,
+                                this.custName,
+                                this.selectedFromType,
+                                this.selectedIndustryType,
+                                this.selectedLevelType)">
                             查询
                         </button>
                     </form>
@@ -144,10 +168,18 @@
                     <td>{{customer.cust_phone}}</td>
                     <td>{{customer.cust_mobile}}</td>
                     <td>
-                        <button class="layui-btn layui-btn-radius layui-btn-normal layui-btn-sm" data-toggle="modal"
+                        <button class="layui-btn
+                        layui-btn-radius
+                        layui-btn-normal
+                        layui-btn-sm"
+                                data-toggle="modal"
                                 data-target="#customerEditDialog">编辑
                         </button>
-                        <button class="layui-btn layui-btn-radius layui-btn-danger layui-btn-sm">删除</button>
+                        <button class="layui-btn
+                        layui-btn-radius
+                        layui-btn-danger
+                        layui-btn-sm">删除
+                        </button>
                     </td>
                 </tr>
                 </tbody>
@@ -391,6 +423,7 @@
     var app = new Vue({
         el: '#app',
         data: {
+            custName: '',
             customers: '',
             count: '100',
             fromType: '',
@@ -401,12 +434,17 @@
             selectedLevelType: ''
         },
         methods: {
-            get_customers: function (page) {
+            get_customers: function (page, custName, custSource, custIndustry, custLevel) {
+                console.log(page, custName, custSource, custIndustry, custLevel)
                 $.get({
                     url: 'http://localhost:8080/bootProjectOrigin_war/customers',
                     data: {
                         "page": page,
-                        "rows": 10
+                        "rows": 10,
+                        "custName": custName,
+                        "custSource": custSource,
+                        "custIndustry": custIndustry,
+                        "custLevel": custLevel
                     },
                     contentType: 'text/plain',
                     beforeSend: function (request) {
@@ -415,13 +453,12 @@
                     success: function (msg) {
                         console.log(msg.data[0].rows)
                         // 在created过程中给vue实例赋值要用对象名而不是this
-                        app.customers = msg.data[0].rows
+                        app.customers = msg.data[0].rows;
                         app.count = msg.data[0].total;
-                        app.fromType = msg.data[1]
-                        app.industryType = msg.data[2]
-                        app.levelType = msg.data[3]
-                        console.log("get" + app.count)
-                        app.pagination(msg.data[0].page, msg.data[0].total)
+                        app.fromType = msg.data[1];
+                        app.industryType = msg.data[2];
+                        app.levelType = msg.data[3];
+                        app.pagination(msg.data[0].page, msg.data[0].total);
                     }
                 })
             },
@@ -438,12 +475,23 @@
                             console.log(obj)
                             console.log(first)
                             if (!first) {
-                                console.log("page" + this.count)
-                                app.get_customers(obj.curr)
+                                app.get_customers(
+                                    obj.curr,
+                                    this.custName,
+                                    this.selectedFromType,
+                                    this.selectedIndustryType,
+                                    this.selectedLevelType)
                             }
                         }
                     });
                 });
+            },
+            clearSearch: function () {
+                console.log('exec')
+                app.custName = '';
+                app.selectedFromType = '';
+                app.selectedIndustryType = '';
+                app.selectedLevelType = '';
             }
         },
         created() {
