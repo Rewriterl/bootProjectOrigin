@@ -77,4 +77,3 @@ public class ShiroRealm extends AuthorizingRealm {
         return (token, info) -> true;
     }
 }
-

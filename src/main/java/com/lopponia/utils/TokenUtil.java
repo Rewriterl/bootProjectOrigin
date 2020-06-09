@@ -14,7 +14,7 @@ public class TokenUtil {
     //过期时间设置(30分钟)
     private static final long EXPIRE_TIME = 30 * 60 * 1000;
 
-    //私钥设置(随便乱写的)
+    //私钥设置(自定义)
     private static final String TOKEN_SECRET = "5xcJVrXNyQDIxK1l2RS9nw";
 
     public String getToken(Token token) {

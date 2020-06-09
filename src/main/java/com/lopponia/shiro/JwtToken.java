@@ -3,7 +3,7 @@ package com.lopponia.shiro;
 import org.apache.shiro.authc.AuthenticationToken;
 
 /**
- * 鉴权用的token vo ，实现 AuthenticationToken
+ * 鉴权用的token实现 AuthenticationToken
  */
 public class JwtToken implements AuthenticationToken {
 

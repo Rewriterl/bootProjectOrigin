@@ -17,10 +17,9 @@
     <!-- 导航栏  -->
     <div class="layui-header" id="myHeader">
         <div class="layui-logo">用户管理系统</div>
-        <!-- 头部区域（可配合layui已有的水平导航） -->
+        <!-- 头部区域 -->
         <ul class="layui-nav layui-layout-left">
             <li class="layui-nav-item"><a href="">控制台</a></li>
-            <li class="layui-nav-item"><a href="">商品管理</a></li>
             <li class="layui-nav-item"><a href="">用户</a></li>
             <li class="layui-nav-item">
                 <a href="javascript:;">其它系统</a>
@@ -41,7 +40,7 @@
                 <dl class="layui-nav-child">
                     <dd><a href="">基本资料</a></dd>
                     <dd><a href="">安全设置</a></dd>
-                    <dd><a href="">登出</a></dd>
+                    <dd><a @click="logOut()">登出</a></dd>
                 </dl>
             </li>
         </ul>
@@ -185,10 +184,10 @@
             </table>
         </div>
         <!-- 客户列表查询部分  end-->
-        <!--   分页     -->
+        <!-- 分页 -->
         <div id="page" class="text-center"></div>
     </div>
-    <!--    创建用户模态框    -->
+    <!-- 创建用户模态框 -->
     <div class="modal fade" id="newCustomerDialog" tabindex="-1" role="dialog"
          aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
@@ -397,19 +396,34 @@
         © www.zehnnanne.com
     </div>
 </div>
-<!-- jQuery -->
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
-<!-- Bootstrap Core JavaScript -->
 <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="https://www.layuicdn.com/layer/layer.js"></script>
 <script src="https://www.layuicdn.com/layui/layui.js"></script>
-<!--Vue-->
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script>
     layui.use('element', function () {
         var element = layui.element;
-
     });
+    var header = new Vue({
+        el: '#myHeader',
+        data: {},
+        methods: {
+            logOut: function () {
+                $.get({
+                    url: 'http://localhost:8080/bootProjectOrigin_war/',
+                    contentType: 'text/plain',
+                    beforeSend: function (request) {
+                        request.setRequestHeader("Authorization", sessionStorage.getItem("Authorization"))
+                    },
+                    success: function (msg) {
+                        layer.msg(msg.message)
+                        location.href = "http://localhost:8080/bootProjectOrigin_war/html/index.html";
+                    }
+                })
+            }
+        }
+    })
     var app = new Vue({
         el: '#app',
         data: {
@@ -441,7 +455,7 @@
                         request.setRequestHeader("Authorization", sessionStorage.getItem("Authorization"))
                     },
                     success: function (msg) {
-                        console.log(msg.data[0].rows)
+                        layer.msg(msg.message)
                         // 在created过程中给vue实例赋值要用对象名而不是this
                         app.customers = msg.data[0].rows;
                         app.count = msg.data[0].total;
@@ -551,6 +565,7 @@
                         request.setRequestHeader("Authorization", sessionStorage.getItem("Authorization"))
                     },
                     success: function (msg) {
+                        app.get_customers()
                         layer.msg(msg.message)
                     }
                 })

@@ -12,10 +12,12 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 public class CustomerController {
@@ -23,6 +25,8 @@ public class CustomerController {
     private CustomerService customerService;
     @Autowired
     private BaseDictService baseDictService;
+    @Autowired
+    RedisTemplate<Serializable, Serializable> redisTemplate;
     //客户来源
     @Value("${customer.from.type}")
     private String FROM_TYPE;
@@ -45,7 +49,13 @@ public class CustomerController {
                        @RequestParam(defaultValue = "") String custName,
                        @RequestParam(defaultValue = "") String custSource,
                        @RequestParam(defaultValue = "") String custIndustry,
-                       @RequestParam(defaultValue = "") String custLevel) {
+                       @RequestParam(defaultValue = "") String custLevel,
+                       @RequestHeader("Authorization") String token) {
+        Result result = new Result();
+        if (redisTemplate.opsForValue().get(token) == null) {
+            result.setMessage("用户身份已过期，请重新登录");
+            return result;
+        }
         Page<Customer> customers = customerService.findCustomerList(page, rows, custName, custSource, custIndustry, custLevel);
         //客户来源
         List<BaseDict> fromType = baseDictService.findBaseDictByTypeCode(FROM_TYPE);
@@ -53,7 +63,6 @@ public class CustomerController {
         List<BaseDict> industryType = baseDictService.findBaseDictByTypeCode(INDUSTRY_TYPE);
         //客户级别
         List<BaseDict> levelType = baseDictService.findBaseDictByTypeCode(LEVEL_TYPE);
-        Result result = new Result();
         System.out.println(customers.toString());
         List<Object> data = new ArrayList<>();
         data.add(customers);

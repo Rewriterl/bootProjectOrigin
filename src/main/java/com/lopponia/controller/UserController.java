@@ -39,8 +39,10 @@ public class UserController {
     }
 
     @GetMapping("/user/logout")
-    public String logout() {
-//        session.invalidate();
-        return "登出";
+    public Result logout(@RequestHeader("Authorization") String token) {
+        Result result = new Result();
+        System.out.println(redisTemplate.delete(token));
+        result.setMessage("成功登出");
+        return result;
     }
 }
